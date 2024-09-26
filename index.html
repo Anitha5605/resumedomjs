@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Resume</title>
+    <style>
+        body {
+            font-family: Arial;
+            margin: 20px;
+        }
+        .resume {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .section-title {
+            border-bottom: 2px solid #333;
+            padding-bottom: 5px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        ul li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="resume" id="resume">
+    </div>
+
+    <script>
+        const resumeData = {
+            name: "malothu anitha",
+            title: "Frontend Developer",
+            contact: {
+                email: "anithamalothu100@gmail.com",
+                phone: "8897031920",
+                address: "hyderabad"
+            },
+            summary: "Motivated and detail-oriented Frontend Developer with a solid understanding of HTML, CSS, JavaScript, and responsive design principles. Familiar with modern frontend frameworks like React and skilled in creating interactive, user-friendly interfaces. Eager to apply technical knowledge and problem-solving skills in a real-world environment. Passionate about web development, learning new technologies, and continuously improving user experience. Looking forward to contributing to a dynamic team and growing as a developer in a fast-paced environment",
+
+
+            education: [
+                {
+                    Be:"computer science and engineering",
+                    institution: "methodist collage of engineering and technology",
+                    period: "2019- 2023"
+                }
+            ],
+            skills: ["HTML", "CSS", "JavaScript", "React", "Git"],
+            hobbies: ["lestening to music", "watching movies", "Coding"]
+        };
+
+        const resumeDiv = document.getElementById('resume');
+
+        const nameTitleDiv = document.createElement('div');
+        nameTitleDiv.innerHTML = `<h1>${resumeData.name}</h1><h2>${resumeData.title}</h2>`;
+        resumeDiv.appendChild(nameTitleDiv);
+
+        const contactSection = document.createElement('div');
+        contactSection.classList.add('section');
+        contactSection.innerHTML = `
+            <h3 class="section-title">Contact Information</h3>
+            <ul>
+                <li>Email: ${resumeData.contact.email}</li>
+                <li>Phone: ${resumeData.contact.phone}</li>
+                <li>Address: ${resumeData.contact.address}</li>
+            </ul>
+        `;
+        resumeDiv.appendChild(contactSection);
+
+        const summarySection = document.createElement('div');
+        summarySection.classList.add('section');
+        summarySection.innerHTML = `
+            <h3 class="section-title">Summary</h3>
+            <p>${resumeData.summary}</p>
+        `;
+        resumeDiv.appendChild(summarySection);
+
+
+        const educationSection = document.createElement('div');
+        educationSection.classList.add('section');
+        educationSection.innerHTML = '<h3 class="section-title">Education</h3>';
+        const educationList = document.createElement('ul');
+        resumeData.education.forEach(edu => {
+            const eduItem = document.createElement('li');
+            eduItem.innerHTML = `
+                <strong>${edu.Be}</strong>, ${edu.institution} <br>
+                <em>${edu.period}</em>
+            `;
+            educationList.appendChild(eduItem);
+        });
+        educationSection.appendChild(educationList);
+        resumeDiv.appendChild(educationSection);
+
+        // Skills
+        const skillsSection = document.createElement('div');
+        skillsSection.classList.add('section');
+        skillsSection.innerHTML = '<h3 class="section-title">Skills</h3>';
+        const skillsList = document.createElement('ul');
+        resumeData.skills.forEach(skill => {
+            const skillItem = document.createElement('li');
+            skillItem.textContent = skill;
+            skillsList.appendChild(skillItem);
+        });
+        skillsSection.appendChild(skillsList);
+        resumeDiv.appendChild(skillsSection);
+
+        // Hobbies
+        const hobbiesSection = document.createElement('div');
+        hobbiesSection.classList.add('section');
+        hobbiesSection.innerHTML = '<h3 class="section-title">Hobbies</h3>';
+        const hobbiesList = document.createElement('ul');
+        resumeData.hobbies.forEach(hobby => {
+            const hobbyItem = document.createElement('li');
+            hobbyItem.textContent = hobby;
+            hobbiesList.appendChild(hobbyItem);
+        });
+        hobbiesSection.appendChild(hobbiesList);
+        resumeDiv.appendChild(hobbiesSection);
+    </script>
+</body>
+</html>
